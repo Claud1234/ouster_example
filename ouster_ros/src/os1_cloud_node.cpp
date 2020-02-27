@@ -29,6 +29,9 @@ int main(int argc, char** argv) {
 
     auto tf_prefix = nh.param("tf_prefix", std::string{});
 	auto sensor_frame = nh.param("sensor_frame", std::string{});
+	if (!tf_prefix.empty()) {
+		sensor_frame.insert(0, 1, '/');
+	}
 	auto imu_frame = tf_prefix + sensor_frame + "/os1_imu";
 	auto lidar_frame = tf_prefix + sensor_frame + "/os1_lidar";
 //    auto sensor_frame = tf_prefix + "/os1_sensor";
